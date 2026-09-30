@@ -1,0 +1,98 @@
+[
+  {
+    "name": "SIAS University Main Gate",
+    "name_zh": "郑州西亚斯学院正门",
+    "latitude": 34.401422,
+    "longitude": 113.765004,
+    "description": "西亚斯学院主入口，位于新郑市人民路东段168号，是学校的标志性入口。",
+    "category": "校门"
+  },
+  {
+    "name": "Moscow Red Square",
+    "name_zh": "莫斯科红场",
+    "latitude": 34.400800,
+    "longitude": 113.766200,
+    "description": "校园内标志性欧式建筑群，仿照莫斯科红场风格建造，是西亚斯最具辨识度的地标之一。",
+    "category": "地标建筑"
+  },
+  {
+    "name": "SIAS Library",
+    "name_zh": "西亚斯图书馆",
+    "latitude": 34.399500,
+    "longitude": 113.767000,
+    "description": "学校图书馆，内设咖啡厅，是学生学习和休闲的重要场所。",
+    "category": "教学设施"
+  },
+  {
+    "name": "Comprehensive Gymnasium",
+    "name_zh": "综合体育馆",
+    "latitude": 34.399654,
+    "longitude": 113.766787,
+    "description": "西亚斯综合体育馆，高德评分4.5，承办各类体育赛事和校园活动。",
+    "category": "体育设施"
+  },
+  {
+    "name": "Europe Street",
+    "name_zh": "欧洲街",
+    "latitude": 34.400200,
+    "longitude": 113.767500,
+    "description": "校园内商业步行街，汇聚必胜客、星巴克、泡泡玛特、霸王茶姬等品牌。",
+    "category": "商业街"
+  },
+  {
+    "name": "London Street",
+    "name_zh": "伦敦街",
+    "latitude": 34.398800,
+    "longitude": 113.768000,
+    "description": "以欧式建筑风格著称的校园街道，拥有罗马柱等欧式元素。",
+    "category": "地标建筑"
+  },
+  {
+    "name": "French Garden",
+    "name_zh": "法国园",
+    "latitude": 34.398200,
+    "longitude": 113.766500,
+    "description": "法式风格园林，内设咖啡厅，环境优雅，是学生休闲社交的热门地点。",
+    "category": "园林景观"
+  },
+  {
+    "name": "Spain Square",
+    "name_zh": "西班牙广场",
+    "latitude": 34.399000,
+    "longitude": 113.765500,
+    "description": "西班牙风格广场，旁设西班牙餐厅，是校园内约会聚餐的首选之地。",
+    "category": "广场"
+  },
+  {
+    "name": "Fisherman's Pavilion",
+    "name_zh": "渔夫子亭",
+    "latitude": 34.402500,
+    "longitude": 113.768500,
+    "description": "纪念春秋时期救助伍子胥的渔夫父子而建，位于校园东北方向高地。",
+    "category": "文化地标"
+  },
+  {
+    "name": "Kansas International School",
+    "name_zh": "堪萨斯国际学院",
+    "latitude": 34.395225,
+    "longitude": 113.769275,
+    "description": "西亚斯学院与美国堪萨斯州富特海斯州立大学合作办学机构，位于校园南部。",
+    "category": "教学设施"
+  },
+  {
+    "name": "Zhengfengyuan Scenic Area",
+    "name_zh": "郑风苑景区",
+    "latitude": 34.403000,
+    "longitude": 113.762000,
+    "description": "校园南门附近的开放式景区，含水上世界、疯狂老鼠等游乐设施。",
+    "category": "周边景点"
+  },
+  {
+    "name": "Xuanyuan Lake Park",
+    "name_zh": "轩辕湖公园",
+    "latitude": 34.395000,
+    "longitude": 113.775000,
+    "description": "新郑市著名湿地公园，环境优美，是学生周末休闲散步的好去处。",
+    "category": "周边景点"
+  }
+]
