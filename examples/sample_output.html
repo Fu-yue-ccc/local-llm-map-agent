@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_0a63fe2119a733f138c4ef4ab982de55 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+    <div style="position: fixed; bottom: 20px; left: 20px; z-index: 1000; 
+                background: white; padding: 12px 16px; border-radius: 8px; 
+                box-shadow: 0 2px 10px rgba(0,0,0,0.2); font-family: sans-serif; font-size: 12px;">
+        <strong style="display: block; margin-bottom: 8px;">📍 地点分类图例</strong>
+    <div style="margin: 3px 0;"><span style="display:inline-block;width:12px;height:12px;background:red;border-radius:50%;margin-right:6px;"></span>校门</div><div style="margin: 3px 0;"><span style="display:inline-block;width:12px;height:12px;background:blue;border-radius:50%;margin-right:6px;"></span>地标建筑</div><div style="margin: 3px 0;"><span style="display:inline-block;width:12px;height:12px;background:green;border-radius:50%;margin-right:6px;"></span>教学设施</div><div style="margin: 3px 0;"><span style="display:inline-block;width:12px;height:12px;background:orange;border-radius:50%;margin-right:6px;"></span>体育设施</div><div style="margin: 3px 0;"><span style="display:inline-block;width:12px;height:12px;background:purple;border-radius:50%;margin-right:6px;"></span>商业街</div><div style="margin: 3px 0;"><span style="display:inline-block;width:12px;height:12px;background:darkgreen;border-radius:50%;margin-right:6px;"></span>园林景观</div><div style="margin: 3px 0;"><span style="display:inline-block;width:12px;height:12px;background:cadetblue;border-radius:50%;margin-right:6px;"></span>广场</div><div style="margin: 3px 0;"><span style="display:inline-block;width:12px;height:12px;background:darkred;border-radius:50%;margin-right:6px;"></span>文化地标</div><div style="margin: 3px 0;"><span style="display:inline-block;width:12px;height:12px;background:lightblue;border-radius:50%;margin-right:6px;"></span>周边景点</div><div style="margin: 3px 0;"><span style="display:inline-block;width:12px;height:12px;background:pink;border-radius:50%;margin-right:6px;"></span>餐厅</div></div>
+    
+    <div style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); 
+                z-index: 1000; background: rgba(255,255,255,0.95); padding: 10px 24px; 
+                border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.15); 
+                font-family: sans-serif; text-align: center;">
+        <h2 style="margin: 0; font-size: 18px; color: #333;">🏛️ 郑州西亚斯学院交互式地图</h2>
+        <p style="margin: 4px 0 0 0; font-size: 12px; color: #666;">
+            由本地 Gemma 4 Agent 生成 | 点击标记查看详情 | 可缩放拖拽
+        </p>
+    </div>
+    
+    
+            <div class="folium-map" id="map_0a63fe2119a733f138c4ef4ab982de55" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_0a63fe2119a733f138c4ef4ab982de55 = L.map(
+                "map_0a63fe2119a733f138c4ef4ab982de55",
+                {
+                    center: [34.401422, 113.765004],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 15,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_3313a469361f15bd52cd38418d2e2d8f = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_3313a469361f15bd52cd38418d2e2d8f.addTo(map_0a63fe2119a733f138c4ef4ab982de55);
+        
+    
+            var marker_f613753c329032b9968a890ac5838457 = L.marker(
+                [34.401422, 113.765004],
+                {
+}
+            ).addTo(map_0a63fe2119a733f138c4ef4ab982de55);
+        
+    
+            var icon_fbf0a1f85e8e4253a6301a0fa883d652 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f9e479d3ab7429dd5de8d3a94944e378 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_52f085a6187afba5b2ce9dbdca3fad6f = $(`<div id="html_52f085a6187afba5b2ce9dbdca3fad6f" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 8px 0; color: #333;">郑州西亚斯学院正门</h4>             <p style="margin: 0 0 6px 0; font-size: 13px; color: #666;">                 <strong>英文名：</strong>SIAS University Main Gate<br>                 <strong>类别：</strong>校门<br>                 <strong>坐标：</strong>34.401422, 113.765004             </p>             <p style="margin: 0; font-size: 13px; color: #444; line-height: 1.5;">                 西亚斯学院主入口，位于新郑市人民路东段168号，是学校的标志性入口。             </p>         </div>         </div>`)[0];
+                popup_f9e479d3ab7429dd5de8d3a94944e378.setContent(html_52f085a6187afba5b2ce9dbdca3fad6f);
+            
+        
+
+        marker_f613753c329032b9968a890ac5838457.bindPopup(popup_f9e479d3ab7429dd5de8d3a94944e378)
+        ;
+
+        
+    
+    
+            marker_f613753c329032b9968a890ac5838457.bindTooltip(
+                `<div>
+                     郑州西亚斯学院正门
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f613753c329032b9968a890ac5838457.setIcon(icon_fbf0a1f85e8e4253a6301a0fa883d652);
+            
+    
+            var marker_a6809904c782524f033404411cb41491 = L.marker(
+                [34.4008, 113.7662],
+                {
+}
+            ).addTo(map_0a63fe2119a733f138c4ef4ab982de55);
+        
+    
+            var icon_32f838231384ec908c7703371441e36a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9f95cae48565c3910481d2177a8a4888 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_cb849800966be1cb4427a5529e0a82b6 = $(`<div id="html_cb849800966be1cb4427a5529e0a82b6" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 8px 0; color: #333;">莫斯科红场</h4>             <p style="margin: 0 0 6px 0; font-size: 13px; color: #666;">                 <strong>英文名：</strong>Moscow Red Square<br>                 <strong>类别：</strong>地标建筑<br>                 <strong>坐标：</strong>34.400800, 113.766200             </p>             <p style="margin: 0; font-size: 13px; color: #444; line-height: 1.5;">                 校园内标志性欧式建筑群，仿照莫斯科红场风格建造，是西亚斯最具辨识度的地标之一。             </p>         </div>         </div>`)[0];
+                popup_9f95cae48565c3910481d2177a8a4888.setContent(html_cb849800966be1cb4427a5529e0a82b6);
+            
+        
+
+        marker_a6809904c782524f033404411cb41491.bindPopup(popup_9f95cae48565c3910481d2177a8a4888)
+        ;
+
+        
+    
+    
+            marker_a6809904c782524f033404411cb41491.bindTooltip(
+                `<div>
+                     莫斯科红场
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a6809904c782524f033404411cb41491.setIcon(icon_32f838231384ec908c7703371441e36a);
+            
+    
+            var marker_2f824347a17b62f8d1f370b83bcedbb3 = L.marker(
+                [34.3995, 113.767],
+                {
+}
+            ).addTo(map_0a63fe2119a733f138c4ef4ab982de55);
+        
+    
+            var icon_cd46dfdd5e0020ff4e5964eb0324cdc0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ad65e403fe9231ac5195403f9133c387 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_cf92df7daec298c596f84f188447ef92 = $(`<div id="html_cf92df7daec298c596f84f188447ef92" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 8px 0; color: #333;">西亚斯图书馆</h4>             <p style="margin: 0 0 6px 0; font-size: 13px; color: #666;">                 <strong>英文名：</strong>SIAS Library<br>                 <strong>类别：</strong>教学设施<br>                 <strong>坐标：</strong>34.399500, 113.767000             </p>             <p style="margin: 0; font-size: 13px; color: #444; line-height: 1.5;">                 学校图书馆，内设咖啡厅，是学生学习和休闲的重要场所。             </p>         </div>         </div>`)[0];
+                popup_ad65e403fe9231ac5195403f9133c387.setContent(html_cf92df7daec298c596f84f188447ef92);
+            
+        
+
+        marker_2f824347a17b62f8d1f370b83bcedbb3.bindPopup(popup_ad65e403fe9231ac5195403f9133c387)
+        ;
+
+        
+    
+    
+            marker_2f824347a17b62f8d1f370b83bcedbb3.bindTooltip(
+                `<div>
+                     西亚斯图书馆
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2f824347a17b62f8d1f370b83bcedbb3.setIcon(icon_cd46dfdd5e0020ff4e5964eb0324cdc0);
+            
+    
+            var marker_579745f92ac7c37ca25df8eb3cb68c1e = L.marker(
+                [34.399654, 113.766787],
+                {
+}
+            ).addTo(map_0a63fe2119a733f138c4ef4ab982de55);
+        
+    
+            var icon_18ca403e4d727cb09c73d28769bc01dc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "orange",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bb4597611a458ed4d73485e0cdea9897 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_413a7707c38dbf68acbbc8d3f52aaa61 = $(`<div id="html_413a7707c38dbf68acbbc8d3f52aaa61" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 8px 0; color: #333;">综合体育馆</h4>             <p style="margin: 0 0 6px 0; font-size: 13px; color: #666;">                 <strong>英文名：</strong>Comprehensive Gymnasium<br>                 <strong>类别：</strong>体育设施<br>                 <strong>坐标：</strong>34.399654, 113.766787             </p>             <p style="margin: 0; font-size: 13px; color: #444; line-height: 1.5;">                 西亚斯综合体育馆，高德评分4.5，营业时间09:30-22:00，承办各类体育赛事和校园活动。             </p>         </div>         </div>`)[0];
+                popup_bb4597611a458ed4d73485e0cdea9897.setContent(html_413a7707c38dbf68acbbc8d3f52aaa61);
+            
+        
+
+        marker_579745f92ac7c37ca25df8eb3cb68c1e.bindPopup(popup_bb4597611a458ed4d73485e0cdea9897)
+        ;
+
+        
+    
+    
+            marker_579745f92ac7c37ca25df8eb3cb68c1e.bindTooltip(
+                `<div>
+                     综合体育馆
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_579745f92ac7c37ca25df8eb3cb68c1e.setIcon(icon_18ca403e4d727cb09c73d28769bc01dc);
+            
+    
+            var marker_2b1fdafa5876bbd4a167ed9161a27e63 = L.marker(
+                [34.4002, 113.7675],
+                {
+}
+            ).addTo(map_0a63fe2119a733f138c4ef4ab982de55);
+        
+    
+            var icon_0c6f5667d7b0a763fb5455d6ee8231e1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "purple",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9428ac1c51434cc0e318fee07b8da6f6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_237d921e2763f2ade94861cedc84e61c = $(`<div id="html_237d921e2763f2ade94861cedc84e61c" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 8px 0; color: #333;">欧洲街</h4>             <p style="margin: 0 0 6px 0; font-size: 13px; color: #666;">                 <strong>英文名：</strong>Europe Street<br>                 <strong>类别：</strong>商业街<br>                 <strong>坐标：</strong>34.400200, 113.767500             </p>             <p style="margin: 0; font-size: 13px; color: #444; line-height: 1.5;">                 校园内商业步行街，汇聚必胜客、星巴克、泡泡玛特、霸王茶姬、DQ、小米之家等品牌，被称为'河南最贵气的学校'的核心区域。             </p>         </div>         </div>`)[0];
+                popup_9428ac1c51434cc0e318fee07b8da6f6.setContent(html_237d921e2763f2ade94861cedc84e61c);
+            
+        
+
+        marker_2b1fdafa5876bbd4a167ed9161a27e63.bindPopup(popup_9428ac1c51434cc0e318fee07b8da6f6)
+        ;
+
+        
+    
+    
+            marker_2b1fdafa5876bbd4a167ed9161a27e63.bindTooltip(
+                `<div>
+                     欧洲街
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2b1fdafa5876bbd4a167ed9161a27e63.setIcon(icon_0c6f5667d7b0a763fb5455d6ee8231e1);
+            
+    
+            var marker_af7c32169f95e0a78370dfe606fab087 = L.marker(
+                [34.3988, 113.768],
+                {
+}
+            ).addTo(map_0a63fe2119a733f138c4ef4ab982de55);
+        
+    
+            var icon_f44d1e659ddf43b42d2feb5f6dcf1c74 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6023890585122ab53374fa115b865978 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4845e21814f7959ce283d48bb638d944 = $(`<div id="html_4845e21814f7959ce283d48bb638d944" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 8px 0; color: #333;">伦敦街</h4>             <p style="margin: 0 0 6px 0; font-size: 13px; color: #666;">                 <strong>英文名：</strong>London Street<br>                 <strong>类别：</strong>地标建筑<br>                 <strong>坐标：</strong>34.398800, 113.768000             </p>             <p style="margin: 0; font-size: 13px; color: #444; line-height: 1.5;">                 以欧式建筑风格著称的校园街道，拥有罗马柱等欧式元素，拍照出片率极高。             </p>         </div>         </div>`)[0];
+                popup_6023890585122ab53374fa115b865978.setContent(html_4845e21814f7959ce283d48bb638d944);
+            
+        
+
+        marker_af7c32169f95e0a78370dfe606fab087.bindPopup(popup_6023890585122ab53374fa115b865978)
+        ;
+
+        
+    
+    
+            marker_af7c32169f95e0a78370dfe606fab087.bindTooltip(
+                `<div>
+                     伦敦街
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_af7c32169f95e0a78370dfe606fab087.setIcon(icon_f44d1e659ddf43b42d2feb5f6dcf1c74);
+            
+    
+            var marker_94e3f9333c5818c69c1e950b6e735e19 = L.marker(
+                [34.3982, 113.7665],
+                {
+}
+            ).addTo(map_0a63fe2119a733f138c4ef4ab982de55);
+        
+    
+            var icon_49eba174a3f5d6c39d41d2457e519442 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkgreen",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1ed49918cb85960afafb3bb372764849 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ae8a2a382b705d28d19c251c27fa0062 = $(`<div id="html_ae8a2a382b705d28d19c251c27fa0062" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 8px 0; color: #333;">法国园</h4>             <p style="margin: 0 0 6px 0; font-size: 13px; color: #666;">                 <strong>英文名：</strong>French Garden<br>                 <strong>类别：</strong>园林景观<br>                 <strong>坐标：</strong>34.398200, 113.766500             </p>             <p style="margin: 0; font-size: 13px; color: #444; line-height: 1.5;">                 法式风格园林，内设咖啡厅，环境优雅，是学生休闲社交的热门地点。             </p>         </div>         </div>`)[0];
+                popup_1ed49918cb85960afafb3bb372764849.setContent(html_ae8a2a382b705d28d19c251c27fa0062);
+            
+        
+
+        marker_94e3f9333c5818c69c1e950b6e735e19.bindPopup(popup_1ed49918cb85960afafb3bb372764849)
+        ;
+
+        
+    
+    
+            marker_94e3f9333c5818c69c1e950b6e735e19.bindTooltip(
+                `<div>
+                     法国园
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_94e3f9333c5818c69c1e950b6e735e19.setIcon(icon_49eba174a3f5d6c39d41d2457e519442);
+            
+    
+            var marker_2b36add38423f7d4f4ea13fbf5f32885 = L.marker(
+                [34.399, 113.7655],
+                {
+}
+            ).addTo(map_0a63fe2119a733f138c4ef4ab982de55);
+        
+    
+            var icon_866291cee14e188a7312cab39961a6e8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "cadetblue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_44a66ba8c4717afeb4b12dbb584206a7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e721ba8ad22471272a556fd40bee9580 = $(`<div id="html_e721ba8ad22471272a556fd40bee9580" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 8px 0; color: #333;">西班牙广场</h4>             <p style="margin: 0 0 6px 0; font-size: 13px; color: #666;">                 <strong>英文名：</strong>Spain Square<br>                 <strong>类别：</strong>广场<br>                 <strong>坐标：</strong>34.399000, 113.765500             </p>             <p style="margin: 0; font-size: 13px; color: #444; line-height: 1.5;">                 西班牙风格广场，旁设西班牙餐厅，是校园内约会聚餐的首选之地。             </p>         </div>         </div>`)[0];
+                popup_44a66ba8c4717afeb4b12dbb584206a7.setContent(html_e721ba8ad22471272a556fd40bee9580);
+            
+        
+
+        marker_2b36add38423f7d4f4ea13fbf5f32885.bindPopup(popup_44a66ba8c4717afeb4b12dbb584206a7)
+        ;
+
+        
+    
+    
+            marker_2b36add38423f7d4f4ea13fbf5f32885.bindTooltip(
+                `<div>
+                     西班牙广场
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2b36add38423f7d4f4ea13fbf5f32885.setIcon(icon_866291cee14e188a7312cab39961a6e8);
+            
+    
+            var marker_28c7716f8f164f642bd0d8e2c219cb1b = L.marker(
+                [34.4025, 113.7685],
+                {
+}
+            ).addTo(map_0a63fe2119a733f138c4ef4ab982de55);
+        
+    
+            var icon_21644a6248a287ac77a74848c1caa1dc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "darkred",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fba4f6828d87b76cbe91297aa0b71cf1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e52f6b84d55097924ac4be343391807e = $(`<div id="html_e52f6b84d55097924ac4be343391807e" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 8px 0; color: #333;">渔夫子亭</h4>             <p style="margin: 0 0 6px 0; font-size: 13px; color: #666;">                 <strong>英文名：</strong>Fisherman's Pavilion<br>                 <strong>类别：</strong>文化地标<br>                 <strong>坐标：</strong>34.402500, 113.768500             </p>             <p style="margin: 0; font-size: 13px; color: #444; line-height: 1.5;">                 纪念春秋时期救助伍子胥的渔夫父子而建，位于校园东北方向高地，兼具历史传说与校园文化意义。             </p>         </div>         </div>`)[0];
+                popup_fba4f6828d87b76cbe91297aa0b71cf1.setContent(html_e52f6b84d55097924ac4be343391807e);
+            
+        
+
+        marker_28c7716f8f164f642bd0d8e2c219cb1b.bindPopup(popup_fba4f6828d87b76cbe91297aa0b71cf1)
+        ;
+
+        
+    
+    
+            marker_28c7716f8f164f642bd0d8e2c219cb1b.bindTooltip(
+                `<div>
+                     渔夫子亭
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_28c7716f8f164f642bd0d8e2c219cb1b.setIcon(icon_21644a6248a287ac77a74848c1caa1dc);
+            
+    
+            var marker_12f33db7494d2ad01911738d89ac958e = L.marker(
+                [34.395225, 113.769275],
+                {
+}
+            ).addTo(map_0a63fe2119a733f138c4ef4ab982de55);
+        
+    
+            var icon_a9f479ed77ef5439c2e41f4a6d6c5a60 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ee585085ff740167089fb1818969068c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_08d8e1af9815cae8cc67b0e85187a2a9 = $(`<div id="html_08d8e1af9815cae8cc67b0e85187a2a9" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 8px 0; color: #333;">堪萨斯国际学院</h4>             <p style="margin: 0 0 6px 0; font-size: 13px; color: #666;">                 <strong>英文名：</strong>Kansas International School<br>                 <strong>类别：</strong>教学设施<br>                 <strong>坐标：</strong>34.395225, 113.769275             </p>             <p style="margin: 0; font-size: 13px; color: #444; line-height: 1.5;">                 西亚斯学院与美国堪萨斯州富特海斯州立大学合作办学机构，位于校园南部。             </p>         </div>         </div>`)[0];
+                popup_ee585085ff740167089fb1818969068c.setContent(html_08d8e1af9815cae8cc67b0e85187a2a9);
+            
+        
+
+        marker_12f33db7494d2ad01911738d89ac958e.bindPopup(popup_ee585085ff740167089fb1818969068c)
+        ;
+
+        
+    
+    
+            marker_12f33db7494d2ad01911738d89ac958e.bindTooltip(
+                `<div>
+                     堪萨斯国际学院
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_12f33db7494d2ad01911738d89ac958e.setIcon(icon_a9f479ed77ef5439c2e41f4a6d6c5a60);
+            
+    
+            var marker_72062a48b9d0b3862f98ed88a394c765 = L.marker(
+                [34.403, 113.762],
+                {
+}
+            ).addTo(map_0a63fe2119a733f138c4ef4ab982de55);
+        
+    
+            var icon_7de1d185c67518f44dee1ef334aff4c9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "lightblue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_afa0a433ce524c3db98b4d5d87525a47 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1065895bd70a7d85d130d55480589a9c = $(`<div id="html_1065895bd70a7d85d130d55480589a9c" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 8px 0; color: #333;">郑风苑景区</h4>             <p style="margin: 0 0 6px 0; font-size: 13px; color: #666;">                 <strong>英文名：</strong>Zhengfengyuan Scenic Area<br>                 <strong>类别：</strong>周边景点<br>                 <strong>坐标：</strong>34.403000, 113.762000             </p>             <p style="margin: 0; font-size: 13px; color: #444; line-height: 1.5;">                 校园南门附近的开放式景区，含水上世界、疯狂老鼠、海豚戏水等游乐设施，距校园仅约190-550米。             </p>         </div>         </div>`)[0];
+                popup_afa0a433ce524c3db98b4d5d87525a47.setContent(html_1065895bd70a7d85d130d55480589a9c);
+            
+        
+
+        marker_72062a48b9d0b3862f98ed88a394c765.bindPopup(popup_afa0a433ce524c3db98b4d5d87525a47)
+        ;
+
+        
+    
+    
+            marker_72062a48b9d0b3862f98ed88a394c765.bindTooltip(
+                `<div>
+                     郑风苑景区
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_72062a48b9d0b3862f98ed88a394c765.setIcon(icon_7de1d185c67518f44dee1ef334aff4c9);
+            
+    
+            var marker_640dd1ab7829e02cf8e3e8f26369d5f3 = L.marker(
+                [34.395, 113.775],
+                {
+}
+            ).addTo(map_0a63fe2119a733f138c4ef4ab982de55);
+        
+    
+            var icon_f155af86cd14e4630ea480c9a2868cd4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "lightblue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7ef6066ff93872cb2584d2ec4bae60dd = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0e1e55de3163bf21c9b99d8ea07c7bda = $(`<div id="html_0e1e55de3163bf21c9b99d8ea07c7bda" style="width: 100.0%; height: 100.0%;">         <div style="font-family: sans-serif; min-width: 200px;">             <h4 style="margin: 0 0 8px 0; color: #333;">轩辕湖公园</h4>             <p style="margin: 0 0 6px 0; font-size: 13px; color: #666;">                 <strong>英文名：</strong>Xuanyuan Lake Park<br>                 <strong>类别：</strong>周边景点<br>                 <strong>坐标：</strong>34.395000, 113.775000             </p>             <p style="margin: 0; font-size: 13px; color: #444; line-height: 1.5;">                 新郑市著名湿地公园，环境优美，是学生周末休闲散步的好去处。             </p>         </div>         </div>`)[0];
+                popup_7ef6066ff93872cb2584d2ec4bae60dd.setContent(html_0e1e55de3163bf21c9b99d8ea07c7bda);
+            
+        
+
+        marker_640dd1ab7829e02cf8e3e8f26369d5f3.bindPopup(popup_7ef6066ff93872cb2584d2ec4bae60dd)
+        ;
+
+        
+    
+    
+            marker_640dd1ab7829e02cf8e3e8f26369d5f3.bindTooltip(
+                `<div>
+                     轩辕湖公园
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_640dd1ab7829e02cf8e3e8f26369d5f3.setIcon(icon_f155af86cd14e4630ea480c9a2868cd4);
+            
+    
+            var marker_4ff17fc701fc48c2a22cf9d45736fc5f = L.marker(
+                [34.401422, 113.765004],
+                {
+}
+            ).addTo(map_0a63fe2119a733f138c4ef4ab982de55);
+        
+    
+            var icon_422b664bfc1314c5360d1bd6a3191794 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "star",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f70fe9370385d88f20aeca685c7ed2e3 = L.popup({
+  "maxWidth": 200,
+});
+
+        
+            
+                var html_cbf92df0697b524b325801f1ce8c36ab = $(`<div id="html_cbf92df0697b524b325801f1ce8c36ab" style="width: 100.0%; height: 100.0%;"><strong>郑州西亚斯学院正门</strong><br>人民路东段168号</div>`)[0];
+                popup_f70fe9370385d88f20aeca685c7ed2e3.setContent(html_cbf92df0697b524b325801f1ce8c36ab);
+            
+        
+
+        marker_4ff17fc701fc48c2a22cf9d45736fc5f.bindPopup(popup_f70fe9370385d88f20aeca685c7ed2e3)
+        ;
+
+        
+    
+    
+            marker_4ff17fc701fc48c2a22cf9d45736fc5f.bindTooltip(
+                `<div>
+                     SIAS University 中心
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4ff17fc701fc48c2a22cf9d45736fc5f.setIcon(icon_422b664bfc1314c5360d1bd6a3191794);
+            
+</script>
+</html>
